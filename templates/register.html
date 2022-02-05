@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3>Register</h3>
+    <h5>Already have an account? Login <a href="{{ url_for('login') }}">here</a>!</h5>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.firstName.label() }}<br>{{ form.firstName }}</p>
+        <p>{{ form.lastName.label() }}<br>{{ form.lastName }}</p>
+        <p>{{ form.username.label() }}<br>{{ form.username }}</p>
+        <p>{{ form.email.label() }}<br>{{ form.email }}</p>
+        <p>{{ form.password.label() }}<br>{{ form.password }}</p>
+        <p>{{ form.confirmPassword.label() }}<br>{{ form.confirmPassword }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+{% endblock %}

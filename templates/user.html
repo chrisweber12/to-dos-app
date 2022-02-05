@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <br><br>
+    <p>Hello, {{ current_user.firstName }}!</p>
+    <p>Here you can create, edit, and schedule to do's.</p>
+    <br>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.text.label() }}{{ form.text }}</p>
+        <p>{{ form.dueDate.label() }}{{ form.dueDate }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+    <h3><u>{{ current_user.firstName }}'s To Do's</u></h3>
+    <form method="POST">
+        <table>
+            <colgroup>
+                <col span="1" style="width: 5%;">
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 25%;">
+            </colgroup>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Reminder</th>
+                <th>Due Date</th>
+            </tr>
+            {% for toDo in toDos %}
+            <tr>
+                <td>
+                    {% if editToDo==None %}
+                        <input name="{{ toDo.id }}" type="submit"  value="&uarr;">
+                        <input name="{{ toDo.id }}" type="submit"  value="&darr;">
+                    {% else %}
+                        <input style="color:#BEBEBE" type="button"  value="&uarr;">
+                        <input style="color:#BEBEBE" type="button"  value="&darr;">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if toDo.id==editToDo.id %}
+                        <input name="{{ toDo.id }}" type="submit" value="Remove">
+                        <input name="{{ toDo.id }}" type="submit"  value="Cancel">
+                    {% else %}
+                        <input name="{{ toDo.id }}" type="submit" value="Remove">
+                        <input name="{{ toDo.id }}" type="submit"  value="Edit">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if toDo.id==editToDo.id %}
+                        {{ editForm.id }}{{ editForm.text }}
+                    {% else %}
+                        {{ toDo.text }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if toDo.id==editToDo.id %}
+                        {{ editForm.dueDate }}{{ editForm.submit }}
+                    {% else %}
+                        {% if toDo.dueDate %}
+                            {{ toDo.dueDate }}
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+{% endblock %}

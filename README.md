@@ -4,7 +4,7 @@ Multi-user Flask application that allows users to create accounts and save, prio
 
 ### Usage
 
-The *bootstrap.sh* file will do all the work in running the API - it initializes the Flask app, creates a virtual environment venv, sources to the virtual environment, installs dependencies from requirements.txt, and runs the app. In the main directory, simply run the command ./bootstrap.sh.
+The *bootstrap.sh* file will do all the work in running the API - it initializes the Flask app, creates a virtual environment venv, sources to the virtual environment, installs dependencies from requirements.txt, and runs the app. In the main directory, simply run the command `./bootstrap.sh`.
 
 From here, you can navigate to http://localhost:3000 and you will see a welcome page. From here, users can register or login. After login, users will be brought to a to-do list page, from which they can add, edit, schedule, and prioritize tasks. To change priority, users can use the up and down arrows to move tasks around the list.
 
